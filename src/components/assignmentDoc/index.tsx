@@ -1,8 +1,9 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 
 const AssignmentDoc: FC<AssignmentDocProps> = ({ setCrumbs }) => {
-  setCrumbs("Assignment Documentation");
-
+  useEffect(() => {
+    setCrumbs("Assignment Documentation");
+  }, [setCrumbs]);
   return (
     <div>
       <p>Assignment Documentation</p>

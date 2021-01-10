@@ -68,12 +68,12 @@ const ServicesMain: FC<ServicesMainProps> = ({ setCrumbs }) => {
           <Card style={{ width: "100%", height: "60vh" }} hoverable>
             <Typography.Title level={4}>Data Fields</Typography.Title>
             {serviceOne &&
-              Object.keys(serviceOne).map((item: string) => (
-                <>
+              Object.keys(serviceOne).map((item: string, index: number) => (
+                <div key={`m${index}`}>
                   <Text code>{item.toUpperCase()}</Text>:
                   <Text code>{serviceOne[item]}</Text>
                   <br />
-                </>
+                </div>
               ))}
           </Card>
           <Card style={{ width: "100%", height: "60vh" }} hoverable>

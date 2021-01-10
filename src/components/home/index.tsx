@@ -1,8 +1,10 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { Typography } from "antd";
 
 const Home: FC<HomeProps> = ({ setCrumbs }) => {
-  setCrumbs("Assignment Description");
+  useEffect(() => {
+    setCrumbs("Assignment Description");
+  }, [setCrumbs]);
 
   return (
     <div>
