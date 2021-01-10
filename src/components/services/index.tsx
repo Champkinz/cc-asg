@@ -2,13 +2,18 @@ import { Button, Card, Spin, Typography } from "antd";
 import React, { FC, useEffect, useState } from "react";
 import { LambdaServicesSDK } from "../../sdk/server";
 import ReactJson from "react-json-view";
+import { USER } from "../../App";
+import { CONFIG } from "../../config";
 const { Text } = Typography;
 
-const ServicesMain: FC<ServicesMainProps> = ({ setCrumbs }) => {
+const ServicesMain: FC<ServicesMainProps> = ({ setCrumbs, mainUser }) => {
   const [serviceOne, setserviceOne] = useState<any>({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const ss = new LambdaServicesSDK();
+  const ss = new LambdaServicesSDK({
+    basePath: CONFIG.base,
+    token: mainUser.userToken,
+  });
   useEffect(() => {
     setCrumbs("Lambda Services");
   }, [setCrumbs]);
@@ -37,12 +42,21 @@ const ServicesMain: FC<ServicesMainProps> = ({ setCrumbs }) => {
         res = await ss.MockServiceFive();
         break;
       }
+      case "6": {
+        res = await ss.lambdaProduct();
+        console.log("res lambda:", res);
+        break;
+      }
       default: {
         res = { error: "Propably didnt set a service" };
         break;
       }
     }
-    setserviceOne(res);
+    if (!res) {
+      setserviceOne({ Error: "Some Error Occured" });
+    } else {
+      setserviceOne(res);
+    }
     setIsLoading(false);
   };
   return (
@@ -55,6 +69,7 @@ const ServicesMain: FC<ServicesMainProps> = ({ setCrumbs }) => {
         </Button>
         <Button onClick={() => callServiceOne("4")}>Lambda Service Four</Button>
         <Button onClick={() => callServiceOne("5")}>Lambda Service Five</Button>
+        <Button onClick={() => callServiceOne("6")}>Lambda Product</Button>
       </div>
 
       <Spin spinning={isLoading}>
@@ -88,6 +103,7 @@ const ServicesMain: FC<ServicesMainProps> = ({ setCrumbs }) => {
 
 interface ServicesMainProps {
   setCrumbs: any;
+  mainUser: USER;
 }
 
 export default ServicesMain;

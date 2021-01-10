@@ -1,6 +1,15 @@
 import axios from "axios";
 
 export class LambdaServicesSDK {
+  constructor(private env: { token: string; basePath: string }) {
+    if (!this.env) {
+      this.env = {
+        token: "",
+        basePath: "",
+      };
+    }
+  }
+
   public async MockServiceOne() {
     try {
       const response = await axios.get(
@@ -10,6 +19,20 @@ export class LambdaServicesSDK {
     } catch (error) {
       console.error(error);
       return error;
+    }
+  }
+
+  public async lambdaProduct() {
+    try {
+      const response = await axios.get(`${this.env.basePath}/product`, {
+        headers: {
+          Authorization: `Bearer ${this.env.token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return false;
     }
   }
 

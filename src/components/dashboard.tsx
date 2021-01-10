@@ -10,9 +10,10 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./home";
 import ServicesMain from "./services";
 import AssignmentDoc from "./assignmentDoc";
+import { USER } from "../App";
 const { Content, Sider } = Layout;
 
-const Dashboard: FC<DashboardProps> = ({ setmainUser }) => {
+const Dashboard: FC<DashboardProps> = ({ setmainUser, mainUser }) => {
   const [collapsed, setcollapsed] = useState(false);
   const toggleCollapsed = () => {
     setcollapsed(!collapsed);
@@ -90,7 +91,7 @@ const Dashboard: FC<DashboardProps> = ({ setmainUser }) => {
                   className="site-layout-background"
                   style={{ padding: 24, minHeight: 360 }}
                 >
-                  <ServicesMain setCrumbs={setCrumbs} />
+                  <ServicesMain mainUser={mainUser} setCrumbs={setCrumbs} />
                 </div>
               </Route>
               <Route path="/asg-doc">
@@ -119,6 +120,7 @@ const Dashboard: FC<DashboardProps> = ({ setmainUser }) => {
 
 interface DashboardProps {
   setmainUser: any;
+  mainUser: USER;
 }
 
 export default Dashboard;

@@ -1,8 +1,11 @@
 import { Button, Form, Input, Typography } from "antd";
 import React, { FC } from "react";
+import { AccessOAuth } from "../sdk/access";
 const { Text } = Typography;
 
 const Login: FC<LoginProps> = ({ setmainUser }) => {
+  const sdk = new AccessOAuth();
+
   const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
@@ -17,6 +20,18 @@ const Login: FC<LoginProps> = ({ setmainUser }) => {
 
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
+  };
+
+  const onLogin = async () => {
+    let res: any = await sdk.getAccessToken();
+    console.log("res :", res);
+    if (res) {
+      setmainUser((prev: any) => ({
+        ...prev,
+        userToken: res.access_token,
+        login: false,
+      }));
+    }
   };
 
   return (
@@ -80,7 +95,7 @@ const Login: FC<LoginProps> = ({ setmainUser }) => {
               padding: "1rem",
             }}
           >
-            <Form
+            {/* <Form
               {...layout}
               name="basic"
               initialValues={{ remember: true }}
@@ -108,17 +123,15 @@ const Login: FC<LoginProps> = ({ setmainUser }) => {
               </Form.Item>
 
               <Form.Item {...tailLayout}>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  onClick={() => {
-                    setmainUser((prev: any) => ({ ...prev, login: false }));
-                  }}
-                >
+                <Button type="primary" htmlType="submit" onClick={onLogin}>
                   Signin
                 </Button>
               </Form.Item>
-            </Form>
+            </Form> */}
+
+            <Button type="primary" htmlType="submit" onClick={onLogin}>
+              Signin
+            </Button>
           </div>
         </div>
       </div>
