@@ -1,25 +1,16 @@
 import { Breadcrumb, Button, Layout, Menu, Typography } from "antd";
 import React, { FC, useState } from "react";
 import {
-  DesktopOutlined,
   PieChartOutlined,
   FileOutlined,
-  TeamOutlined,
   UserOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useHistory,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./home";
 import ServicesMain from "./services";
 import AssignmentDoc from "./assignmentDoc";
-const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
+const { Content, Sider } = Layout;
 
 const Dashboard: FC<DashboardProps> = ({ setmainUser }) => {
   const [collapsed, setcollapsed] = useState(false);

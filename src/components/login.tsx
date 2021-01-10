@@ -1,6 +1,6 @@
-import { Button, Card, Form, Input, Typography } from "antd";
+import { Button, Form, Input, Typography } from "antd";
 import React, { FC } from "react";
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 const Login: FC<LoginProps> = ({ setmainUser }) => {
   const layout = {
