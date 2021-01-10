@@ -1,4 +1,4 @@
-import { Button, Form, Input, Typography } from "antd";
+import { Button, Typography } from "antd";
 import React, { FC } from "react";
 import { AccessOAuth } from "../sdk/access";
 const { Text } = Typography;
@@ -6,21 +6,21 @@ const { Text } = Typography;
 const Login: FC<LoginProps> = ({ setmainUser }) => {
   const sdk = new AccessOAuth();
 
-  const layout = {
-    labelCol: { span: 8 },
-    wrapperCol: { span: 16 },
-  };
-  const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 },
-  };
+  // const layout = {
+  //   labelCol: { span: 8 },
+  //   wrapperCol: { span: 16 },
+  // };
+  // const tailLayout = {
+  //   wrapperCol: { offset: 8, span: 16 },
+  // };
 
-  const onFinish = (values: any) => {
-    console.log("Success:", values);
-  };
+  // const onFinish = (values: any) => {
+  //   console.log("Success:", values);
+  // };
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
-  };
+  // const onFinishFailed = (errorInfo: any) => {
+  //   console.log("Failed:", errorInfo);
+  // };
 
   const onLogin = async () => {
     let res: any = await sdk.getAccessToken();
