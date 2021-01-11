@@ -26,7 +26,7 @@ export class LambdaServicesSDK {
 
   public async lambdaProduct() {
     try {
-      const response = await axios.get(`${this.env.basePath}/appone`, {
+      const response = await axios.get(`${this.env.basePath}/apptwo`, {
         headers: {
           Authorization: `Bearer ${this.env.token}`,
         },
