@@ -12,19 +12,21 @@ export class LambdaServicesSDK {
 
   public async MockServiceOne() {
     try {
-      const response = await axios.get(
-        "https://www.amock.io/api/CharanaAmar/asgcc-1"
-      );
+      const response = await axios.get(`${this.env.basePath}/appone`, {
+        headers: {
+          Authorization: `Bearer ${this.env.token}`,
+        },
+      });
       return response.data;
     } catch (error) {
       console.error(error);
-      return error;
+      return false;
     }
   }
 
   public async lambdaProduct() {
     try {
-      const response = await axios.get(`${this.env.basePath}/product`, {
+      const response = await axios.get(`${this.env.basePath}/appone`, {
         headers: {
           Authorization: `Bearer ${this.env.token}`,
         },
@@ -38,49 +40,43 @@ export class LambdaServicesSDK {
 
   public async MockServiceTwo() {
     try {
-      const response = await axios.get(
-        "https://www.amock.io/api/CharanaAmar/asgcc-2"
-      );
+      const response = await axios.get(`${this.env.basePath}/appthree`, {
+        headers: {
+          Authorization: `Bearer ${this.env.token}`,
+        },
+      });
       return response.data;
     } catch (error) {
       console.error(error);
-      return error;
+      return false;
     }
   }
 
   public async MockServiceThree() {
     try {
-      const response = await axios.get(
-        "https://www.amock.io/api/CharanaAmar/asgcc-3"
-      );
+      const response = await axios.get(`${this.env.basePath}/appfour`, {
+        headers: {
+          Authorization: `Bearer ${this.env.token}`,
+        },
+      });
       return response.data;
     } catch (error) {
       console.error(error);
-      return error;
+      return false;
     }
   }
 
   public async MockServiceFour() {
     try {
-      const response = await axios.get(
-        "https://www.amock.io/api/CharanaAmar/asgcc-4"
-      );
+      const response = await axios.get(`${this.env.basePath}/appfive`, {
+        headers: {
+          Authorization: `Bearer ${this.env.token}`,
+        },
+      });
       return response.data;
     } catch (error) {
       console.error(error);
-      return error;
-    }
-  }
-
-  public async MockServiceFive() {
-    try {
-      const response = await axios.get(
-        "https://www.amock.io/api/CharanaAmar/asgcc-5"
-      );
-      return response.data;
-    } catch (error) {
-      console.error(error);
-      return error;
+      return false;
     }
   }
 }

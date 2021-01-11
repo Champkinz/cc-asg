@@ -39,14 +39,10 @@ const ServicesMain: FC<ServicesMainProps> = ({ setCrumbs, mainUser }) => {
         break;
       }
       case "5": {
-        res = await ss.MockServiceFive();
-        break;
-      }
-      case "6": {
         res = await ss.lambdaProduct();
-        console.log("res lambda:", res);
         break;
       }
+
       default: {
         res = { error: "Propably didnt set a service" };
         break;
@@ -69,7 +65,6 @@ const ServicesMain: FC<ServicesMainProps> = ({ setCrumbs, mainUser }) => {
         </Button>
         <Button onClick={() => callServiceOne("4")}>Lambda Service Four</Button>
         <Button onClick={() => callServiceOne("5")}>Lambda Service Five</Button>
-        <Button onClick={() => callServiceOne("6")}>Lambda Product</Button>
       </div>
 
       <Spin spinning={isLoading}>

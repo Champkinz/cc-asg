@@ -1,11 +1,11 @@
 import { Button, Typography } from "antd";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { AccessOAuth } from "../sdk/access";
 const { Text } = Typography;
 
 const Login: FC<LoginProps> = ({ setmainUser }) => {
   const sdk = new AccessOAuth();
-
+  const [isLoading, setisLoading] = useState(false);
   // const layout = {
   //   labelCol: { span: 8 },
   //   wrapperCol: { span: 16 },
@@ -23,6 +23,7 @@ const Login: FC<LoginProps> = ({ setmainUser }) => {
   // };
 
   const onLogin = async () => {
+    setisLoading(true);
     let res: any = await sdk.getAccessToken();
     console.log("res :", res);
     if (res) {
@@ -31,6 +32,7 @@ const Login: FC<LoginProps> = ({ setmainUser }) => {
         userToken: res.access_token,
         login: false,
       }));
+      setisLoading(false);
     }
   };
 
@@ -129,8 +131,13 @@ const Login: FC<LoginProps> = ({ setmainUser }) => {
               </Form.Item>
             </Form> */}
 
-            <Button type="primary" htmlType="submit" onClick={onLogin}>
-              Signin
+            <Button
+              loading={isLoading}
+              type="primary"
+              htmlType="submit"
+              onClick={onLogin}
+            >
+              Authentication
             </Button>
           </div>
         </div>
